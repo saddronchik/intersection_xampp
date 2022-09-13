@@ -51,7 +51,7 @@ class CitisenControl extends Controller
     {
 
         return view('addcitisens');
-    } 
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -68,16 +68,16 @@ class CitisenControl extends Controller
                 $path = null;
             }
                 $params = $request->all();
-    
+
                 $params['photo']=$path;
                 $params['user']= Auth::user()->username;
                 $params['id_user']= Auth::user()->id;
-               
+
                 $citizen = Citizen::create($params);
                 $citizen->save();
-            
+
                 $id_citisen = $citizen -> id;
-              
+
              foreach ($request->user as $user) {
                 $records = Record::create([
                     "id_user"=>$user,
@@ -89,7 +89,7 @@ class CitisenControl extends Controller
         } catch(Exception $e) {
             return back()->with('error', $e->getMessage());
         }
-        
+
     }
 
     /**
@@ -99,11 +99,11 @@ class CitisenControl extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   
+    {
         $citizen = Citizen::find($id);
         $users = $this->citisensRepository->getUsers();
-        
-        return view('showCitisen',["users"=>$users,"citizen"=>$citizen]); 
+
+        return view('showCitisen',["users"=>$users,"citizen"=>$citizen]);
     }
 
     public function showBorderCitisen($id){
@@ -118,7 +118,7 @@ class CitisenControl extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-   
+
     /**
      * Update the specified resource in storage.
      *
@@ -127,43 +127,43 @@ class CitisenControl extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(CitisenCreateRequest $request, Citizen $citizen)
-    {   
-       
+    {
+
         if ($request->photo==null) {
-            
-            $params = $request->all(); 
+
+            $params = $request->all();
             $citizen = Citizen::find($params['id']);
             $params['user']= $citizen['user'];
             $result = $citizen->fill($params)->save();
 
             $id_citisen = $citizen ->id;
 
-           Record::where('id_citisen',$id_citisen)->delete(); 
-          
+           Record::where('id_citisen',$id_citisen)->delete();
+
             foreach ($request->user as $user) {
                 $records = Record::create([
                 "id_user"=>$user,
                 "id_citisen"=>$id_citisen]);
             }
                 $records->save();
-                
+
             return redirect()->route('home');
         }else {
 
-       $params = $request->all(); 
+       $params = $request->all();
        $citizen = Citizen::find($params['id']);
        Storage::delete($citizen->photo);
-        
+
         $path = $request->file('photo')->store('folder');
         $params['photo']=$path;
         $params['user']= $citizen['user'];
         $result = $citizen->fill($params)->save();
-        
+
         $id_citisen = $citizen ->id;
 
         Record::where('id_citisen',$id_citisen)->delete();
 
-        // $delete = DB::table('records')->where('id_citisen',$id_citisen)->delete(); 
+        // $delete = DB::table('records')->where('id_citisen',$id_citisen)->delete();
             foreach ($request->user as $user) {
              $records = Record::create([
                 "id_user"=>$user,
@@ -190,7 +190,7 @@ class CitisenControl extends Controller
         catch(Exception $e) {
             return back()->with('error', $e->getMessage());
         }
-         
+
     }
 
 
