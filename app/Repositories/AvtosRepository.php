@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories;
 
@@ -13,9 +13,11 @@ class AvtosRepository implements AvtosInterface
 
     public function indexAvtos(): LengthAwarePaginator{
        $result = DB::table('avtos')
-            ->select('avtos.id','avtos.id_citisen', 'avtos.brand_avto', 'avtos.addit_inf', 'avtos.regis_num', 'avtos.color','avtos.who_noticed','avtos.where_notice','avtos.detection_time','avtos.user','avtos.id_user')
+            ->select('avtos.id','avtos.id_citisen', 'avtos.brand_avto', 'avtos.addit_inf',
+                'avtos.regis_num', 'avtos.color','avtos.who_noticed','avtos.where_notice',
+                'avtos.detection_time','avtos.user','avtos.id_user')
             ->paginate(5);
-        
+
         return $result;
     }
 
@@ -32,7 +34,7 @@ class AvtosRepository implements AvtosInterface
 
     public function serchAvtos($s): LengthAwarePaginator {
         $result = DB::table('avtos')
-            ->select('avtos.id','avtos.brand_avto','avtos.id_citisen', 'avtos.addit_inf', 'avtos.regis_num', 'avtos.color','avtos.who_noticed','avtos.where_notice','avtos.detection_time','avtos.user', 'avtos.id_user')        
+            ->select('avtos.id','avtos.brand_avto','avtos.id_citisen', 'avtos.addit_inf', 'avtos.regis_num', 'avtos.color','avtos.who_noticed','avtos.where_notice','avtos.detection_time','avtos.user', 'avtos.id_user')
             ->where('avtos.id_citisen','LIKE',"%{$s}%")
             ->orWhere('avtos.id','LIKE',"%{$s}%")
             ->orWhere('avtos.regis_num','LIKE',"%{$s}%")
