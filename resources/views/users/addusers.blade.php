@@ -5,13 +5,13 @@
   <div class="row">
     <div class="col-2">
       <div class="nav flex-column nav-pills" aria-orientation="vertical">
-        
+
         <a class="btn btn-primary btn-sm mb-2 "  href="home" role="button">Главная</a>
 
       </div>
     </div>
                 <div class="col-8">
-                    <form method="POST" enctype="multipart/form-data" action="users" id="formAdd">
+                    <form method="POST" enctype="multipart/form-data" action="" id="formAdd">
                       <h1> Добавление пользователей </h1>
                       <div class="alert alert-success messages" role="alert" style="display: none"></div>
                         @csrf
@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="mb-2">
                                   <div class="form-check form-check-inline">
-                                    
+
                                     <label >Автомобили: </label>
                                   </div>
                                   <div class="mb-2">
@@ -60,8 +60,8 @@
                                         <input class="form-check-input" type="checkbox" name="role_border" id="role_border" value="user_border">
                                         <label class="form-check-label" for="inlineCheckbox1">Просмотр</label>
                                       </div>
-                                </td> 
-                                <td>     
+                                </td>
+                                <td>
                                   <div class="form-check form-check mb-2">
                                     <input class="form-check-input" type="checkbox" name="role_citisen_add" id="role_citisen_add" value="user_сitisen_add">
                                     <label class="form-check-label" for="inlineCheckbox2">Добавление</label>
@@ -91,10 +91,10 @@
                                       <label class="form-check-label" for="inlineCheckbox3">Редактирование</label>
                                     </div>
                                 </td>
-    
-      
+
+
                                 <td>
-                              
+
                                 </td>
                           </td>
                       </tr>
@@ -118,7 +118,7 @@
                           Разрешение на просмотр всего
                           </label>
                         </div> --}}
-                        
+
                         <a href="home" class="btn btn-primary">Назад</a>
                         <button type="submit" id="add" name="add" class="btn btn-primary">Добавить пользователя</button>
                       </form>
@@ -126,10 +126,10 @@
                 <script>
                   const formAdd = document.getElementById('formAdd');
                   const messageBlock = document.querySelector('.messages');
-  
+
                   formAdd.addEventListener('submit' , function(e){
                       e.preventDefault();
-  
+
                       const formData = new FormData(this);
                       fetch('users', {
                               method: "POST",
@@ -147,16 +147,16 @@
                               // console.log(response)
                           //    return response.text();
                           })
-  
+
                           .then(function(text)  {
                               console.log('Success ' + text);
-  
+
                           }).catch(function(error){
                               console.error(error);
-  
+
                           })
-  
+
                   });
-  
+
               </script>
 @endsection

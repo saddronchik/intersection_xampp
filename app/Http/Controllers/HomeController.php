@@ -43,22 +43,22 @@ class HomeController extends Controller
     public function indexcitisen(){
         $id_user = Auth::user()->id;
         $citisens = $this->citisensRepository->getCizensJoinRecordsUsers() ;
-        return view('citisenUser', [
+        return view('citisens.citisenUser', [
             'citisens'=>$citisens,
             'id_user'=>$id_user
         ]);
     }
 
     public function search(Request $request){
-        
+
         $authUser = Auth::user()->id;
         $authUsername = Auth::user()->username;
         $citisens = $this->citisensRepository->getSearchCitisens($request) ;
-       
+
         return view('home',  [
             'citisens'=>$citisens,
             'authUser' => $authUser,
-            'authUsername' => $authUsername, 
+            'authUsername' => $authUsername,
         ]);
     }
 
@@ -75,7 +75,7 @@ class HomeController extends Controller
                 'authUsername' => $authUsername,
             ]);
         }
-        
+
         $id_user = Auth::user()->id;
         $citisens = $this->citisensRepository->getSearchUsersInCitisens($request);
 //подумать над правильностью
@@ -83,7 +83,7 @@ class HomeController extends Controller
     }
 
     public function sendMessage(Request $request){
-       
+
         date_default_timezone_set("Europe/Moscow");
         $params = $request->all();
         $params['created_at'] = date('Y-m-d H:i:s');
@@ -92,7 +92,7 @@ class HomeController extends Controller
             'to_user'=>$params['to'],
             'message'=>$params['message'],
         ]);
-      
+
             return response()->json($params);
         }
 
@@ -107,7 +107,7 @@ class HomeController extends Controller
 
         return view('citisens_message',["authUser"=>$authUser]);
     }
-    
+
     public function destroyMessage($id){
         Message::destroy($id);
     }

@@ -5,13 +5,13 @@
 <div class="row">
     <div class="col-2">
       <div class="nav flex-column nav-pills" aria-orientation="vertical">
-        
+
         <a class="btn btn-primary btn-sm mb-2 " href="home" role="button">Главная</a>
-        
-        <a class="btn btn-primary btn-sm mb-2 " href="citisenuser" role="button">Доступные мне</a>
-      
+
+        <a class="btn btn-primary btn-sm mb-2 " href="{{route('homeuser')}}" role="button">Доступные мне</a>
+
         <a class="btn btn-primary btn-sm mb-2 " href="addcitisens" role="button">Добавление граждан</a>
-        
+
         <a class="btn btn-primary btn-sm mb-2 " href="peoplelist" role="button">Люди</a>
 
         <a class="btn btn-primary btn-sm mb-2 " href="avtoslist" role="button">Автомобили</a>
@@ -19,14 +19,14 @@
         <a class="btn btn-primary btn-sm mb-2 " href="borderslist" role="button">Пересечение границы</a>
 
         <a class="btn btn-success btn-sm mb-2 " href="logs" role="button">Логи</a>
-        
+
         <a class="btn btn-success btn-sm mb-2 " href="addusers" role="button">Добавить пользователя</a>
         <a class="btn btn-success btn-sm mb-2 " href="usersList" role="button">Работа с пользователями</a>
 
       </div>
-    </div>  
-    
-    
+    </div>
+
+
     <div class="col-10">
         <h1 class="display-8">Граждане</h1>
           <!-- Button trigger modal -->
@@ -55,9 +55,9 @@
                         {{ session('status') }}
                       </div>
                     @endif
-                  <form action="{{route('citisen.import')}}" method="POST" enctype="multipart/form-data"> 
+                  <form action="{{route('citisen.import')}}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <input type="file" name="files" > 
+                    <input type="file" name="files" >
                     <input class="btn btn-primary btn-sm mb-2" type="checkbox" value="true" name="haveHead"  id="haveHead">
                     <label class="form-check-label  mb-2" for="defaultCheck1">Есть шапка</label>
                     <button class="btn btn-primary btn-sm mb-2" type="submit">Импорт </button>
@@ -81,11 +81,11 @@
                   </div>
                 </div>
               </form>
-              
+
               <table class="table table-hover">
                 <thead>
                   <tr>
-                    
+
                     <th scope="col-md-2">#</th>
                     <th scope="col-md-5">ФИО</a></th>
                     <th scope="col-md-2">Дата рождения</th>
@@ -96,7 +96,7 @@
                     <th scope="col-md-2">Сделал запись пользователь</th>
                   </tr>
                 </thead>
-              
+
                 @foreach ($citisens as $citisen)
                   <tbody>
                     <tr>
@@ -116,17 +116,17 @@
                       <td class="col-md-2">{{ $citisen->where_notice }}</td>
                       <td class="col-md-2">{{ $citisen->detection_time }}</td>
                       <td class="col-md-2" style="display: none">{{ $citisen->id_user }}</td>
-                      
+
                       <td class="col-md-2">{{ $citisen->user }}</td>
                       @role('admin')
                       <td class="col-md-2"><a href="destroyCitisen/{{$citisen->id}}" class="btn btn-danger btn-sm mb-2">Удалить</a></td>
                       @endrole
-                      
+
                     </tr>
                 @endforeach
               </tbody>
             </table>
-  
+
   {{ $citisens->appends(['s'=>request()->s])->onEachSide(5)->links() }}
 
     </div>
@@ -145,7 +145,7 @@
         let toUserId = this.getAttribute('data-toId');
         let citisenId = this.getAttribute('data-Id');
         let citisenname = this.getAttribute('data-ctisenname');
-    
+
         const data = JSON.stringify({
           from: authUserId,
           to:toUserId,
@@ -153,17 +153,17 @@
         });
 
         console.log(data);
-        
+
         const response = fetch('/message', {
         method: "POST",
-        
+
         headers: {
           "Content-Type": "application/json",
           "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         },
           body:data
         })
-        
+
         .then(function (response) {
         return response.json()
       })
@@ -176,5 +176,5 @@
       })
     })
   </script>
-          
+
 @endsection

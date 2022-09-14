@@ -8,7 +8,7 @@
         <a class="btn btn-primary btn-sm mb-2 " href="{{route('home')}}" role="button">Главная</a>
       </div>
     </div>
-    
+
   <div class="col-8">
     @if ($errors->any())
     <div class="alert alert-danger">
@@ -19,8 +19,8 @@
         </ul>
     </div>
       @endif
-    <form method="POST" action="citisens" enctype="multipart/form-data"  id="citisAdd" >
-      
+    <form method="POST" action="" enctype="multipart/form-data" id="citisAdd" >
+
         @csrf
         <div class="form-group">
           <label for="full_name">ФИО</label>
@@ -53,7 +53,7 @@
           <div id="phone_number"><input type="number" class="form-control" name="phone_number" id="phone_number" ></div>
           <input class="btn btn-primary btn-sm mt-2" type="button" value="+" id="addInputsPhone" />
         </div>
-        
+
         <div class="form-group" >
           <label for="social_account">Соц аккаунт</label>
           <div id="social_account"> <input type="text" class="form-control" name="social_account" id="social_account"></div>
@@ -62,11 +62,11 @@
 
 
         <div class="form-group">
-          <label for="addit_inf">Доп информация</label>         
+          <label for="addit_inf">Доп информация</label>
           <textarea class="form-control" name="addit_inf" id="addit_inf" rows="3"></textarea>
         </div>
         <div class="form-group">
-          <label for="who_noticed">Кто заметил</label>         
+          <label for="who_noticed">Кто заметил</label>
           {{-- <input type="text" class="form-control" name="who_noticed" id="who_noticed"> --}}
           <select name="who_noticed" id="who_noticed"  class="selectpicker" data-style="btn-info" data-live-search="true">
             <option data-tokens="ketchup mustard" data-style="btn-info" value="Не определенно" >Выберите человека</option>
@@ -77,11 +77,11 @@
 
         </div>
         <div class="form-group">
-          <label for="where_notice">Где заметил</label>         
+          <label for="where_notice">Где заметил</label>
           <input type="text" class="form-control" name="where_notice" id="where_notice">
         </div>
         <div class="form-group">
-          <label for="detection_time">Время обнаружения</label>         
+          <label for="detection_time">Время обнаружения</label>
           <input type="datetime-local" class="form-control" name="detection_time" id="detection_time">
         </div>
         <div class="form-group">
@@ -90,7 +90,7 @@
           <div class="form-group" style="width:200px; height:100px; overflow:auto; border:solid 1px #C3E4FE;">
             <fieldset id="shest">
               <label><input type="checkbox" id="checkall"> Выбрать всех</label>
-              
+
             @foreach ( $users as $user)
             <li class="list-group-item"><input type="checkbox" class="thing" name="user[]" id="user" value="{{ $user->id}}" >{{' '.$user->username }}</li>
             @endforeach
@@ -101,7 +101,7 @@
         <div class="alert alert-success messages" role="alert" style="display: none"></div>
         <button type="submit" class="btn btn-primary" id="add-citizen">Добавить запись</button>
       </form>
-      
+
 </div>
 
 <script>
@@ -162,10 +162,10 @@
                     checkboxes[i].checked = this.checked;
                 }
             }
-               
+
     let nameCounter = 1;
     $('#addInputs').click(function() {
-    
+
         if (nameCounter < 5) {
           $('#social_account').append(`<input type="text" class="form-control" name="social_account${nameCounter++}" id="social_account${nameCounter++}" />`);
         } else {
@@ -174,7 +174,7 @@
       });
     let namePhone= 1;
     $('#addInputsPhone').click(function() {
-    
+
         if (namePhone < 3) {
           $('#phone_number').append(`<input type="text" class="form-control" name="phone_number${namePhone++}" id="phone_number" />`);
         } else {
@@ -183,7 +183,7 @@
       });
                 let namePass= 1;
     $('#addInputsPass').click(function() {
-    
+
         if (namePass < 3) {
           $('#passport_data').append(`<input type="text" class="form-control" name="passport_data${namePass++}" id="passport_data" />`);
         } else {
@@ -193,6 +193,6 @@
 
 </script>
 
-                
+
 
 @endsection
