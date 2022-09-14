@@ -88,7 +88,7 @@
                     <tr>
                       <th scope="row">{{ $auto->id }}</th>
                       @role('admin')
-                      <td class="col-md-3">  <a href="avto/{{$auto->id}}"> {{ $auto->brand_avto }}</td>
+                      <td class="col-md-3">  <a href="{{$auto->id}}"> {{ $auto->brand_avto }}</td>
                       @else
                       <td class="mail" style="color: blue" data-toId="{{ $auto->id_user}}" data-Id="{{ $auto->id }}" data-name="{{ $auto->brand_avto }}" class="col-md-3">{{ $auto->brand_avto }}</td>
                       @endrole
