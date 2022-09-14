@@ -5,11 +5,11 @@
     <div class="row">
         <div class="col-2">
             <div class="nav flex-column nav-pills" aria-orientation="vertical">
-                <a class="btn btn-primary btn-sm mb-2 " href="home" role="button">Главная</a>
-                <a class="btn btn-primary btn-sm mb-2 " href="peopleuser" role="button">Доступные мне</a>
-                <a class="btn btn-primary btn-sm mb-2 " href="addpeoples" role="button">Добавление людей</a>
+                <a class="btn btn-primary btn-sm mb-2 " href="{{ route('home') }}" role="button">Главная</a>
+                <a class="btn btn-primary btn-sm mb-2 " href="{{ route('peopleuser') }}" role="button">Доступные мне</a>
+                <a class="btn btn-primary btn-sm mb-2 " href="{{ route('people.create') }}" role="button">Добавление людей</a>
             </div>
-        </div>  
+        </div>
         <div class="col-10">
           <h1 class="display-8">Люди</h1>
             <form method="GET" action="{{ route('searchPeople') }}">
@@ -58,7 +58,7 @@
                 @endforeach
             </table>
             {{ $peoples->appends(['s'=>request()->s])->onEachSide(5)->links() }}
-    </div>   
+    </div>
 </div>
 
 @endsection

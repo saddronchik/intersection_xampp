@@ -6,15 +6,15 @@
     <div class="col-2">
       <div class="nav flex-column nav-pills" aria-orientation="vertical">
 
-        <a class="btn btn-primary btn-sm mb-2 " href="home" role="button">Главная</a>
+        <a class="btn btn-primary btn-sm mb-2 " href="{{ route('home') }}" role="button">Главная</a>
 
         <a class="btn btn-primary btn-sm mb-2 " href="{{route('homeuser')}}" role="button">Доступные мне</a>
 
-        <a class="btn btn-primary btn-sm mb-2 " href="addcitisens" role="button">Добавление граждан</a>
+        <a class="btn btn-primary btn-sm mb-2 " href="{{ route('citizen.create') }}" role="button">Добавление граждан</a>
 
-        <a class="btn btn-primary btn-sm mb-2 " href="peoplelist" role="button">Люди</a>
+        <a class="btn btn-primary btn-sm mb-2 " href="{{ route('people.index') }}" role="button">Люди</a>
 
-        <a class="btn btn-primary btn-sm mb-2 " href="avtoslist" role="button">Автомобили</a>
+        <a class="btn btn-primary btn-sm mb-2 " href="{{ route('auto.index') }}" role="button">Автомобили</a>
 
         <a class="btn btn-primary btn-sm mb-2 " href="borderslist" role="button">Пересечение границы</a>
 

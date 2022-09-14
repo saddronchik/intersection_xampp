@@ -6,9 +6,9 @@
     <div class="col-2">
       <div class="nav flex-column nav-pills" aria-orientation="vertical">
 
-        <a class="btn btn-primary btn-sm mb-2 " href="home" role="button">Главная</a>
-        <a class="btn btn-primary btn-sm mb-2 " href="avtoslistusers" role="button">Доступные мне</a>
-        <a class="btn btn-primary btn-sm mb-2 " href="addavtos" role="button">Добавление автомобилей</a>
+        <a class="btn btn-primary btn-sm mb-2 " href="{{ route('home') }}" role="button">Главная</a>
+        <a class="btn btn-primary btn-sm mb-2 " href="{{ route('auto.available') }}" role="button">Доступные мне</a>
+        <a class="btn btn-primary btn-sm mb-2 " href="{{ route('auto.create') }}" role="button">Добавление автомобилей</a>
       </div>
     </div>
 
@@ -58,7 +58,7 @@
 </div>
 
 
-          <form method="GET" action="{{ route('searchAvto') }}">
+          <form method="GET" action="{{ route('auto.search') }}">
             <div class="form-row">
               <div class="form-group col-md-10">
                 <input type="text" class="form-control" id="s" name="s" placeholder="Поиск..."  value="{{request()->s}}">
@@ -110,8 +110,8 @@
             </table>
                 {{ $autos->appends(['s'=>request()->s])->links() }}
     </div>
-    <input type="hidden" name="from" id="from" value="{{ $authUser}}">
-    <input type="hidden" name="username" id="username" value="{{ $authUsername}}">
+    <input type="hidden" name="from" id="from" value="{{ auth()->id() }}">
+    <input type="hidden" name="username" id="username" value="{{ auth()->user()->username }}">
     <script>
 
       const links = document.querySelectorAll('.mail');
