@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AvtoCreateRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class AvtoCreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::check();
     }
 
     /**
@@ -25,7 +26,7 @@ class AvtoCreateRequest extends FormRequest
     {
         return [
             'brand_avto' => 'required',
-            'user' => 'required',
+            'user' => 'required|exists:users,id',
         ];
     }
     public function messages()

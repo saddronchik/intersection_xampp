@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 interface AvtosInterface
 {
 
-    public function indexAvtos();
-    public function indexAvtosJoinRecordsUsers($id_user);
-    public function serchAvtos($s);
+    public function getAll();
+    public function getWithRecordsByUser(int $userId);
+    public function searchAutos(string $search);
     public function serchAvtosJoinRecordsUsers($s,$id_user);
-    public function getBorderAvtos($id);
+    public function getByBorder(int $id);
 
 }
