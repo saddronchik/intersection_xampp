@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories;
 
@@ -24,10 +24,10 @@ class CitisensRepository implements CitisensInterface
         $result = DB::table('citizens')
             ->join('records', 'records.id_citisen','=','citizens.id')
             ->join('users', 'records.id_user','=','users.id')
-            ->select('citizens.id','records.id_user','citizens.full_name','citizens.passport_data','citizens.date_birth','citizens.who_noticed','citizens.where_notice','citizens.detection_time','citizens.user')
+            ->select('citizens.id','records.id_user','citizens.full_name','citizens.passport_data','citizens.date_birth','citizens.user')
             ->where('records.id_user','=', $id_user)
             ->get();
-        
+
         return $result;
     }
 
@@ -48,7 +48,7 @@ class CitisensRepository implements CitisensInterface
         $result = DB::table('citizens')
             ->join('records', 'records.id_citisen','=','citizens.id')
             ->join('users', 'records.id_user','=','users.id')
-            ->select('citizens.id','records.id_user','citizens.full_name','citizens.passport_data','citizens.date_birth','citizens.who_noticed','citizens.where_notice','citizens.detection_time','citizens.user')
+            ->select('citizens.id','records.id_user','citizens.full_name','citizens.passport_data','citizens.date_birth','citizens.user')
             ->where('records.id_user','=', $id_user)
             ->get();
 
@@ -61,7 +61,7 @@ class CitisensRepository implements CitisensInterface
         $result = DB::table('citizens')
             ->join('records', 'records.id_citisen','=','citizens.id')
             ->join('users', 'records.id_user','=','users.id')
-            ->select('citizens.id','records.id_user','citizens.full_name','citizens.passport_data','citizens.date_birth','citizens.who_noticed','citizens.where_notice','citizens.detection_time','citizens.user')
+            ->select('citizens.id','records.id_user','citizens.full_name','citizens.passport_data','citizens.date_birth','citizens.user')
             ->where('records.id_user','=', $id_user)
             ->where('citizens.full_name','LIKE',"%{$s}%")
             ->orWhere('citizens.id','LIKE',"%{$s}%")

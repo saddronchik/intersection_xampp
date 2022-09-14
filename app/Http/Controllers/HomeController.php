@@ -39,6 +39,17 @@ class HomeController extends Controller
             'authUsername' => $authUsername,
         ]);
     }
+    public function indexCitizenList()
+    {
+        $citisens = $this->citisensRepository->getAll();
+        $authUser = Auth::user()->id;
+        $authUsername = Auth::user()->username;
+        return view('citisens.citizensList', [
+            'citisens'=>$citisens,
+            'authUser' => $authUser,
+            'authUsername' => $authUsername,
+        ]);
+    }
 
     public function indexcitisen(){
         $id_user = Auth::user()->id;

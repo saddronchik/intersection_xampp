@@ -37,15 +37,18 @@ class CitisenControl extends Controller
      */
     public function index()
     {
-
+        $users = User::select('id','username')->get();
+        return view('citisens.addcitisens',["users"=>$users]);
     }
 
-
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
-        $users = User::select('id','username')->get();
-        $peoples = Peoples::select('id','full_name')->get();
-        return view('citisens.addcitisens', compact('users', 'peoples'));
+        return view('citisens.addcitisens');
     }
 
     /**
