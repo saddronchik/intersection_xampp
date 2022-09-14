@@ -44,6 +44,7 @@ class HomeController extends Controller
         $citisens = $this->citisensRepository->getAll();
         $authUser = Auth::user()->id;
         $authUsername = Auth::user()->username;
+
         return view('citisens.citizensList', [
             'citisens'=>$citisens,
             'authUser' => $authUser,

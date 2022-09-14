@@ -68,29 +68,7 @@
                         <label for="addit_inf">Доп информация</label>
                         <textarea class="form-control" name="addit_inf" id="addit_inf" rows="3"></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="who_noticed">Кто заметил</label>
-                        {{-- <input type="text" class="form-control" name="who_noticed" id="who_noticed"> --}}
-                        <select name="who_noticed" id="who_noticed" class="selectpicker" data-style="btn-info"
-                                data-live-search="true">
-                            <option data-tokens="ketchup mustard" data-style="btn-info" value="Не определенно">Выберите
-                                человека
-                            </option>
-                            @foreach($peoples as $people)
-                                <option name="who_noticed" id="who_noticed" value="{{$people->full_name}}"
-                                        data-subtext="{{$people->id}}">{{$people->full_name}} </option>
-                            @endforeach
-                        </select>
 
-                    </div>
-                    <div class="form-group">
-                        <label for="where_notice">Где заметил</label>
-                        <input type="text" class="form-control" name="where_notice" id="where_notice">
-                    </div>
-                    <div class="form-group">
-                        <label for="detection_time">Время обнаружения</label>
-                        <input type="datetime-local" class="form-control" name="detection_time" id="detection_time">
-                    </div>
                     <div class="form-group">
                         <label for="">Доступ к просмотру записи</label>
 

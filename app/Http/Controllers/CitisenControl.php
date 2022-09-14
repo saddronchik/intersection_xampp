@@ -30,33 +30,14 @@ class CitisenControl extends Controller
         $this->citisensRepository = $citisensRepository;
         $this->citisensServices = $citisensServices;
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $users = User::select('id','username')->get();
-        return view('citisens.addcitisens',["users"=>$users]);
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        return view('citisens.addcitisens');
+        $users = User::query()->select('id','username')->get();
+        return view('citisens.addcitisens', compact('users'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(CitisenCreateRequest $request)
     {
         try {
@@ -90,12 +71,6 @@ class CitisenControl extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $citizen = Citizen::find($id);

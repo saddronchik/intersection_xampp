@@ -34,6 +34,7 @@ Route::group(['middleware' => ['role:user_сitisen|admin']], function () {
     Route::get('/citisenuser', [App\Http\Controllers\HomeController::class, 'indexcitisen'])->name('homeuser');
     Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
     Route::get('/searchUsers', [App\Http\Controllers\HomeController::class, 'searchUsers'])->name('searchUsers');
+    Route::get('/citizenList', [App\Http\Controllers\HomeController::class, 'indexCitizenList'])->name('list_citizen');
 
     Route::get('/citisen/{id}', [App\Http\Controllers\CitisenControl::class, 'show'])->name('citisen.show');
     Route::get('citisen/citisenBorder/{id}', [App\Http\Controllers\CitisenControl::class, 'showBorderCitisen']);
@@ -46,7 +47,6 @@ Route::group(['middleware' => ['role:user_сitisen|admin']], function () {
     Route::get('/people/index', [App\Http\Controllers\PeoplesController::class, 'index'])->name('people.index');
     Route::get('/peopleuser', [App\Http\Controllers\PeoplesController::class, 'indexUser'])->name('peopleuser');
     Route::get('/people/{id}', [App\Http\Controllers\PeoplesController::class, 'show']);
-
 });
 
 Route::group(['middleware' => ['role:user_сitisen_add|admin']], function () {
@@ -57,6 +57,8 @@ Route::group(['middleware' => ['role:user_сitisen_add|admin']], function () {
     Route::post('/citisens/import', [App\Services\CitisensServices::class, 'CitisenImport'])->name('citisen.import');
     Route::post('/citisens/importNoHead', [App\Services\CitisensServices::class, 'CitisenImportNoHead']);
     Route::get('/destroyCitisen/{id}', [App\Http\Controllers\CitisenControl::class, 'destroy']);
+
+    Route::get('/eventsAdd',[App\Http\Controllers\EventsController::class,'create'])->name('events.create');
 });
 
 Route::group(['prefix' => 'people', 'as' => 'people.', 'middleware' => ['role:user_сitisen_add|admin']], function () {
