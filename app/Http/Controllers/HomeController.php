@@ -117,7 +117,7 @@ class HomeController extends Controller
     public function viewMessages(){
         $authUser = Auth::user();
 
-        return view('citisens_message',["authUser"=>$authUser]);
+        return view('citisens.citisens_message',["authUser"=>$authUser]);
     }
 
     public function destroyMessage($id){

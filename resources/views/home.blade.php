@@ -15,17 +15,15 @@
                     <a class="btn btn-primary btn-sm mb-2 " href="{{ route('citizen.create') }}" role="button">Добавление
                         граждан</a>
 
-                    <a class="btn btn-primary btn-sm mb-2 " href="{{ route('people.index') }}" role="button">Люди</a>
-
                     <a class="btn btn-primary btn-sm mb-2 " href="{{ route('auto.index') }}"
                        role="button">Автомобили</a>
 
-                    <a class="btn btn-primary btn-sm mb-2 " href="borderslist" role="button">Пересечение границы</a>
+                    <a class="btn btn-primary btn-sm mb-2 " href="{{route('borders.list')}}" role="button">Пересечение границы</a>
 
                     <a class="btn btn-success btn-sm mb-2 " href="logs" role="button">Логи</a>
 
-                    <a class="btn btn-success btn-sm mb-2 " href="addusers" role="button">Добавить пользователя</a>
-                    <a class="btn btn-success btn-sm mb-2 " href="usersList" role="button">Работа с пользователями</a>
+                    <a class="btn btn-success btn-sm mb-2 " href="{{route('add.user')}}" role="button">Добавить пользователя</a>
+                    <a class="btn btn-success btn-sm mb-2 " href="{{route('usersList')}}" role="button">Работа с пользователями</a>
 
                 </div>
             </div>
@@ -130,16 +128,15 @@
 
                                 @endrole
                                 {{-- <td class="col-md-3">{{ $citisen->passport_data }}</td> --}}
-                                <td class="col-md-2">{{ $citisen->date_birth }}</td>
-                                <td class="col-md-2">{{ $citisen->who_noticed }}</td>
-                                <td class="col-md-2">{{ $citisen->where_notice }}</td>
-                                <td class="col-md-2">{{ $citisen->detection_time }}</td>
-                                <td class="col-md-2" style="display: none">{{ $citisen->id_user }}</td>
+                                <td class="col-md-2"></td>
+                                <td class="col-md-2"></td>
+                                <td class="col-md-2"></td>
+                                <td class="col-md-2"></td>
+                                <td class="col-md-2" style="display: none"></td>
 
                                 <td class="col-md-2">{{ $citisen->user }}</td>
                                 @role('admin')
-                                <td class="col-md-2"><a href="destroyCitisen/{{$citisen->id}}"
-                                                        class="btn btn-danger btn-sm mb-2">Удалить</a></td>
+                                <td class="col-md-2"><a href="destroyCitisen/{{$citisen->id}}" class="btn btn-danger btn-sm mb-2">Удалить</a></td>
                                 @endrole
 
                         </tr>
@@ -174,7 +171,7 @@
 
                         console.log(data);
 
-                        const response = fetch('/message', {
+                        const response = fetch('message', {
                             method: "POST",
 
                             headers: {

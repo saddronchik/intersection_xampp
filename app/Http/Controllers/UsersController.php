@@ -23,12 +23,12 @@ class UsersController extends Controller
                     ->select('users.id','users.username','model_has_roles.role_id','roles.name')
                     ->get();
 
-        return view('users',[
+        return view('users.users',[
             "users"=>$users
         ]);
     }
     public function indexUser(){
-        return view('addusers');
+        return view('users.addusers');
     }
 
     /**
@@ -49,7 +49,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $user = User::create([
             'username' => $request['username'],
             'password' => Hash::make($request['password']),
@@ -64,7 +64,7 @@ class UsersController extends Controller
         $user->assignRole($request['role_border_add']);
         $user->assignRole($request['role_border_upd']);
         $user->assignRole($request['role_admin']);
-        
+
         return $user->save();
     }
 
@@ -78,7 +78,7 @@ class UsersController extends Controller
     {
         $user = User::find($id);
 
-        return view('showUsers',compact('user'));        
+        return view('users.showUsers',compact('user'));
     }
 
     /**
@@ -101,12 +101,12 @@ class UsersController extends Controller
      */
     public function update(Request $request,$id)
     {
-        $params = $request->only(['id','username']); 
+        $params = $request->only(['id','username']);
         $users = User::find($params['id']);
-        
+
         $users->username = $params["username"];
-       
-       DB::table('model_has_roles')->where('model_id',$users->id)->delete(); 
+
+       DB::table('model_has_roles')->where('model_id',$users->id)->delete();
        $users->assignRole($request['role_citisen']);
        $users->assignRole($request['role_citisen_add']);
        $users->assignRole($request['role_citisen_upd']);
@@ -119,7 +119,7 @@ class UsersController extends Controller
        $users->assignRole($request['role_admin']);
 
        $users->save();
-       
+
        return redirect()->route('usersList');
     //    return  $users;
     }
@@ -133,9 +133,9 @@ class UsersController extends Controller
     public function destroy($id)
     {
         $messageFromUser = Message::where('from_user','=',$id)->delete();
-       
+
         User::destroy($id);
-        
+
         return redirect()->route('usersList');
     }
 }

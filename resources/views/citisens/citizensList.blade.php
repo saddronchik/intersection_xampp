@@ -78,12 +78,9 @@
                     <thead>
                     <tr>
 
-                        <th scope="col-md-2">id</th>
-                        <th scope="col-md-5">ФИО</a></th>
+                        <th scope="col-md-5">id</th>
+                        <th scope="col-md-2">ФИО</a></th>
                         <th scope="col-md-2">Дата рождения</th>
-{{--                        <th scope="col-md-2">Кто заметил</th>--}}
-{{--                        <th scope="col-md-2">Где заметил</th>--}}
-{{--                        <th scope="col-md-2">Время обнаружения</th>--}}
                         <th style="display: none" scope="col-md-2">id</th>
                         <th scope="col-md-2">Сделал запись пользователь</th>
                     </tr>
@@ -93,9 +90,9 @@
                         <tbody>
                         <tr>
 
-                            <th scope="row" id="idcitisen" name="idcitisen"  value="{{ $citisen->id }}">{{ $citisen->id }}</th>
+                            <th scope="row" class="col-md-1" id="idcitisen" name="idcitisen"  value="{{ $citisen->id }}">{{ $citisen->id }}</th>
                             @role('admin')
-                            <td class="col-md-2"><a href="citisen/{{$citisen->id}}">{{ $citisen->full_name }}</td>
+                            <td class="col-md-5"><a href="citisen/{{$citisen->id}}">{{ $citisen->full_name }}</td>
                             @else
                                 <td class="col-md-2">
                                     <span  class="mail" style="color: blue" data-toId="{{ $citisen->id_user}}" data-Id="{{ $citisen->id }}" data-ctisenname = "{{ $citisen->full_name }}" >{{ $citisen->full_name }} </span>
@@ -104,9 +101,6 @@
                                 @endrole
                                 {{-- <td class="col-md-3">{{ $citisen->passport_data }}</td> --}}
                                 <td class="col-md-2">{{ $citisen->date_birth }}</td>
-                                <td class="col-md-2">{{ $citisen->who_noticed }}</td>
-                                <td class="col-md-2">{{ $citisen->where_notice }}</td>
-                                <td class="col-md-2">{{ $citisen->detection_time }}</td>
                                 <td class="col-md-2" style="display: none">{{ $citisen->id_user }}</td>
 
                                 <td class="col-md-2">{{ $citisen->user }}</td>

@@ -13,7 +13,7 @@
         @endif
         <div class="row">
             <div class="col-md-10">
-                <form action="{{route('update.avto',$auto->id)}}" method="post" enctype="multipart/form-data"
+                <form action="{{route('update.auto',$auto->id)}}" method="post" enctype="multipart/form-data"
                       class="form" id="formUpdate">
                     @csrf
                     <input type="hidden" name="id" value="{{ $auto->id }}">

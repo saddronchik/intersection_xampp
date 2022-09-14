@@ -132,8 +132,8 @@ Route::group(['middleware' => ['role:admin']], function () {
 
     Route::get('/usersList', [App\Http\Controllers\UsersController::class, 'index'])->name('usersList');
 
-    Route::get('/addusers', [App\Http\Controllers\UsersController::class, 'indexUser']);
-    Route::post('/users', [App\Http\Controllers\UsersController::class, 'store']);
+    Route::get('/addusers', [App\Http\Controllers\UsersController::class, 'indexUser'])->name('add.user');
+    Route::post('/users', [App\Http\Controllers\UsersController::class, 'store'])->name('users.store');
 
     Route::get('/users/{id}', [App\Http\Controllers\UsersController::class, 'show']);
     Route::post('/users/{id}', [App\Http\Controllers\UsersController::class, 'update'])->name('update.user');

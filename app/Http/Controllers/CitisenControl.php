@@ -76,13 +76,13 @@ class CitisenControl extends Controller
         $citizen = Citizen::find($id);
         $users = $this->citisensRepository->getUsers();
 
-        return view('showCitisen',["users"=>$users,"citizen"=>$citizen]);
+        return view('citisens.showCitisen',["users"=>$users,"citizen"=>$citizen]);
     }
 
     public function showBorderCitisen($id){
         $citisens = $this->citisensRepository->getBorderCitisens($id);
 
-        return view('citisens_border',["citisens"=>$citisens]);
+        return view('citisens.citisens_border',["citisens"=>$citisens]);
     }
 
     /**

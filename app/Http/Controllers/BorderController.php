@@ -27,18 +27,14 @@ class BorderController extends Controller
         $this->borderRepository = $borderRepository;
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $borders = $this->borderRepository->indexBorder();
         $authUser = Auth::user()->id;
         $authUsername = Auth::user()->username;
 
-            return view('border',[
+            return view('border.border',[
                 "borders"=>$borders,
                 "authUser"=>$authUser,
                 "authUsername"=>$authUsername,
