@@ -30,6 +30,7 @@ Auth::routes();
 
 Route::group(['middleware'=>['role:user_сitisen|admin']],function(){
     Route::get('/citisenuser', [App\Http\Controllers\HomeController::class, 'indexcitisen'])->name('homeuser');
+    Route::get('/citizenList', [App\Http\Controllers\HomeController::class, 'indexCitizenList'])->name('list_citizen');
     Route::get('/search',[App\Http\Controllers\HomeController::class, 'search'])->name('search');
     Route::get('/searchUsers',[App\Http\Controllers\HomeController::class, 'searchUsers'])->name('searchUsers');
 
@@ -41,9 +42,11 @@ Route::group(['middleware'=>['role:user_сitisen|admin']],function(){
     Route::get('/searchPeople',[App\Http\Controllers\PeoplesController::class, 'searchPeople'])->name('searchPeople');
     Route::get('/searchPeopleUser',[App\Http\Controllers\PeoplesController::class, 'searchPeopleUser'])->name('searchPeopleUser');
 
-    Route::get('/peoplelist',[App\Http\Controllers\PeoplesController::class, 'index'])->name('peoplelist');
-    Route::get('/peopleuser', [App\Http\Controllers\PeoplesController::class, 'indexUser'])->name('peopleuser');
-    Route::get('/people/{id}', [App\Http\Controllers\PeoplesController::class, 'show']);
+//    Route::get('/peoplelist',[App\Http\Controllers\PeoplesController::class, 'index'])->name('peoplelist');
+//    Route::get('/peopleuser', [App\Http\Controllers\PeoplesController::class, 'indexUser'])->name('peopleuser');
+//    Route::get('/people/{id}', [App\Http\Controllers\PeoplesController::class, 'show']);
+
+
 
      });
 
@@ -56,9 +59,10 @@ Route::group(['middleware'=>['role:user_сitisen_add|admin']],function(){
     Route::post('/citisens/importNoHead', [App\Services\CitisensServices::class, 'CitisenImportNoHead']);
     Route::get('/destroyCitisen/{id}', [App\Http\Controllers\CitisenControl::class, 'destroy']);
 
-    Route::get('/addpeoples', [App\Http\Controllers\PeoplesController::class, 'addPeople']);
-    Route::post('/peoplesadd', [App\Http\Controllers\PeoplesController::class, 'store']);
-    Route::get('/destroyPeople/{id}', [App\Http\Controllers\PeoplesController::class, 'destroy']);
+//    Route::get('/addpeoples', [App\Http\Controllers\PeoplesController::class, 'addPeople']);
+    Route::get('/eventsAdd',[App\Http\Controllers\EventsController::class,'create'])->name('eventsAdd');
+//    Route::post('/peoplesadd', [App\Http\Controllers\PeoplesController::class, 'store']);
+//    Route::get('/destroyPeople/{id}', [App\Http\Controllers\PeoplesController::class, 'destroy']);
 });
 
 Route::group(['middleware'=>['role:user_сitisen_upd|admin']],function(){

@@ -8,11 +8,13 @@
 
         <a class="btn btn-primary btn-sm mb-2 " href="home" role="button">Главная</a>
 
-        <a class="btn btn-primary btn-sm mb-2 " href="{{route('homeuser')}}" role="button">Доступные мне</a>
+          <a class="btn btn-primary btn-sm mb-2 " href="{{route('list_citizen')}}" role="button">Список граждан</a>
+
+        <a class="btn btn-primary btn-sm mb-2 " href="{{route('homeuser')}}" role="button">Граждане доступные мне</a>
 
         <a class="btn btn-primary btn-sm mb-2 " href="{{route('add.citisen')}}" role="button">Добавление граждан</a>
 
-        <a class="btn btn-primary btn-sm mb-2 " href="{{route('peoplelist')}}" role="button">Люди</a>
+{{--        <a class="btn btn-primary btn-sm mb-2 " href="{{route('peoplelist')}}" role="button">Люди</a>--}}
 
         <a class="btn btn-primary btn-sm mb-2 " href="{{route('avtoslist')}}" role="button">Автомобили</a>
 
@@ -81,6 +83,8 @@
                   </div>
                 </div>
               </form>
+
+        <a class="btn btn-primary mb-2 float-right" href="{{route('eventsAdd')}}" role="button">Добавить событие</a>
 
               <table class="table table-hover">
                 <thead>

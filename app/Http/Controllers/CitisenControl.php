@@ -38,8 +38,7 @@ class CitisenControl extends Controller
     public function index()
     {
         $users = User::select('id','username')->get();
-        $peoples = Peoples::select('id','full_name')->get();
-        return view('addcitisens',["users"=>$users,"peoples"=>$peoples]);
+        return view('citisens.addcitisens',["users"=>$users]);
     }
 
     /**
@@ -49,8 +48,7 @@ class CitisenControl extends Controller
      */
     public function create()
     {
-
-        return view('addcitisens');
+        return view('citisens.addcitisens');
     }
 
     /**

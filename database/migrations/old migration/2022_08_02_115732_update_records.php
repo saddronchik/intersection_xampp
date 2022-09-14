@@ -27,7 +27,8 @@ class UpdateRecords extends Migration
     public function down()
     {
         Schema::table('records', function($table) {
-            $table->dropColumn('id_people');
+            $table->dropForeign(['id_people']);
+            $table->dropColum('id_people');
          });
     }
 }
