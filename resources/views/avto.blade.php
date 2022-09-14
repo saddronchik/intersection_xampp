@@ -84,8 +84,6 @@
               </tr>
             </thead>
                 @foreach ($autos as $auto)
-
-
                   <tbody>
                     <tr>
                       <th scope="row">{{ $auto->id }}</th>
