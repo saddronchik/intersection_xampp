@@ -10,25 +10,25 @@
 
         <a class="btn btn-primary btn-sm mb-2 " href="{{route('homeuser')}}" role="button">Доступные мне</a>
 
-        <a class="btn btn-primary btn-sm mb-2 " href="addcitisens" role="button">Добавление граждан</a>
+        <a class="btn btn-primary btn-sm mb-2 " href="{{route('add.citisen')}}" role="button">Добавление граждан</a>
 
-        <a class="btn btn-primary btn-sm mb-2 " href="peoplelist" role="button">Люди</a>
+        <a class="btn btn-primary btn-sm mb-2 " href="{{route('peoplelist')}}" role="button">Люди</a>
 
-        <a class="btn btn-primary btn-sm mb-2 " href="avtoslist" role="button">Автомобили</a>
+        <a class="btn btn-primary btn-sm mb-2 " href="{{route('avtoslist')}}" role="button">Автомобили</a>
 
-        <a class="btn btn-primary btn-sm mb-2 " href="borderslist" role="button">Пересечение границы</a>
+        <a class="btn btn-primary btn-sm mb-2 " href="{{route('borders.list')}}" role="button">Пересечение границы</a>
 
-        <a class="btn btn-success btn-sm mb-2 " href="logs" role="button">Логи</a>
+        <a class="btn btn-success btn-sm mb-2 " href="{{route('show.logs')}}" role="button">Логи</a>
 
-        <a class="btn btn-success btn-sm mb-2 " href="addusers" role="button">Добавить пользователя</a>
-        <a class="btn btn-success btn-sm mb-2 " href="usersList" role="button">Работа с пользователями</a>
+        <a class="btn btn-success btn-sm mb-2 " href="{{route('add.user')}}" role="button">Добавить пользователя</a>
+        <a class="btn btn-success btn-sm mb-2 " href="{{route('usersList')}}" role="button">Работа с пользователями</a>
 
       </div>
     </div>
 
 
     <div class="col-10">
-        <h1 class="display-8">Граждане</h1>
+        <h1 class="display-8">События</h1>
           <!-- Button trigger modal -->
           <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Импорт/экспорт
