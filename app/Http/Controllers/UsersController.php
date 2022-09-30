@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\User;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UsersController extends Controller
 {
@@ -18,13 +20,21 @@ class UsersController extends Controller
     public function index()
     {
         $users = DB::table('users')
-                    ->leftJoin('model_has_roles','model_has_roles.model_id','=','users.id')
-                    ->leftJoin('roles','roles.id','=','model_has_roles.role_id')
-                    ->select('users.id','users.username','model_has_roles.role_id','roles.name')
+                    ->Join('model_has_roles','model_has_roles.model_id','=','users.id')
+                    ->Join('roles','roles.id','=','model_has_roles.role_id')
+                    ->select('users.id','users.username','model_has_roles.role_id','roles.name','roles.full_name')
+                    ->groupBy('users.id')
                     ->get();
 
+        $roles = DB::table('model_has_roles')
+            ->join('roles','roles.id','=','model_has_roles.role_id')
+            ->join('users','users.id','=','model_has_roles.model_id')
+            ->select(DB::raw("GROUP_CONCAT(roles.full_name SEPARATOR ', ') as `role`"),'users.id','users.username')
+            ->groupBy('model_id')
+            ->get();
         return view('users.users',[
-            "users"=>$users
+            "users"=>$users,
+            "roles"=>$roles,
         ]);
     }
     public function indexUser(){
@@ -120,8 +130,19 @@ class UsersController extends Controller
 
        $users->save();
 
-       return redirect()->route('usersList');
+       return redirect()->route('users.list');
     //    return  $users;
+    }
+
+    public function updatePassword(Request $request){
+        $params = $request->all();
+        $params["password"] = Hash::make($request['password']);
+        $user = User::find($params['id']);
+        $user->username = $params["username"];
+        $user->password = $params["password"];
+
+        $user->save();
+        return redirect()->route('users.list');
     }
 
     /**
@@ -136,6 +157,6 @@ class UsersController extends Controller
 
         User::destroy($id);
 
-        return redirect()->route('usersList');
+        return redirect()->route('users.list');
     }
 }

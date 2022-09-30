@@ -23,7 +23,7 @@ class CitisensImport implements ToCollection
 
     public function collection(Collection $rows)
     {
-       
+
         foreach ($rows as $key  => $row) {
 
             if ($key == 0) {
@@ -31,11 +31,11 @@ class CitisensImport implements ToCollection
             }
             Citizen::create([
                 'full_name'=> $row[1],
-                'passport_data'    => $row[2], 
-                'passport_data1'    => $row[3], 
-                'passport_data2'    => $row[4], 
-                'date_birth' => ($row[5]) , 
-                // 'date_birth' => Date::excelToDateTimeObject($row[5]) , 
+                'passport_data'    => $row[2],
+                'passport_data1'    => $row[3],
+                'passport_data2'    => $row[4],
+                'date_birth' => ($row[5]) ,
+                // 'date_birth' => Date::excelToDateTimeObject($row[5]) ,
                 'place_registration' => $row[6],
                 'place_residence' => $row[7],
                 'phone_number' => $row[8],
@@ -47,12 +47,12 @@ class CitisensImport implements ToCollection
                 'social_account3' => $row[14],
                 'social_account4' => $row[15],
                 'addit_inf' => $row[16],
-                'who_noticed' => $row[17],
-                'where_notice' => $row[18],
-                // 'detection_time' => Date::excelToDateTimeObject($row[19]),
-                'detection_time' => ($row[19]),
-                'id_user' => $row[20],
-                'user' => $row[21],
+//                'who_noticed' => $row[17],
+//                'where_notice' => $row[18],
+//                // 'detection_time' => Date::excelToDateTimeObject($row[19]),
+//                'detection_time' => ($row[19]),
+                'id_user' => $row[17],
+                'user' => $row[18],
             ]);
         }
     }

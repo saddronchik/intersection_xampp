@@ -5,17 +5,17 @@
 <div class="row">
     <div class="col-2">
       <div class="nav flex-column nav-pills" aria-orientation="vertical">
-        
+
         <a class="btn btn-primary btn-sm mb-2 " role="button" data-bs-toggle="button" href="borderslist" role="button">Назад</a>
 
       </div>
-    </div>  
-    
+    </div>
+
     <div class="col-10">
-      
+
               <h1 class="display-8">Пересечение границы</h1>
 
-              <form method="GET" action="{{ route('searchBordersUser') }}">
+              <form method="GET" action="{{ route('borders.searchUser') }}">
                 <div class="form-row">
                   <div class="form-group col-md-10">
                     <input type="text" class="form-control" id="s" name="s" placeholder="Поиск..."  value="{{request()->s}}">
@@ -40,7 +40,7 @@
                   </tr>
                 </thead>
                 @foreach ($borders as $border)
-              
+
                   <tbody>
                     <tr>
                       <th scope="row">{{ $border->id }}</th>
@@ -53,19 +53,19 @@
                       <td class="col-md-3">{{ $border->checkpoint }}</td>
                       <td class="col-md-3">{{ $border->route }}</td>
                       <td class="col-md-3"><a href="destroyborder/{{$border->id}}" class="btn btn-danger btn-sm mb-2 ">Удалить</a></td>
-                      
+
                     </tr>
 
               {{-- <a href="border/{{$border->id}}" class="btn btn-primary btn-sm mb-2 ">Открыть</a> --}}
-              
+
                 @endforeach
-                                    
+
               </tbody>
-                
+
             </table>
                 {{-- {{ $borders->appends(['s'=>request()->s])->links() }} --}}
     </div>
-      
 
-          
+
+
 @endsection

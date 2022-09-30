@@ -5,16 +5,16 @@
 <div class="row">
     <div class="col-2">
       <div class="nav flex-column nav-pills" aria-orientation="vertical">
-        
-        <a class="btn btn-primary btn-sm mb-2 " href="home" role="button">Главная</a>
-        <a class="btn btn-primary btn-sm mb-2 " href="borderslistUser" role="button">Доступные мне</a>
-        <a class="btn btn-primary btn-sm mb-2 " href="addborder" role="button">Добавить запись пересечения</a>
+
+        <a class="btn btn-primary btn-sm mb-2 " href="{{route('home')}}" role="button">Главная</a>
+        <a class="btn btn-primary btn-sm mb-2 " href="{{route('borders.list.user')}}" role="button">Доступные мне</a>
+        <a class="btn btn-primary btn-sm mb-2 " href="{{route('borders.create')}}" role="button">Добавить запись пересечения</a>
       </div>
-    </div>  
-    
-    
+    </div>
+
+
     <div class="col-10">
-      
+
               <h1 class="display-8">Пересечение границы</h1>
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -30,19 +30,19 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <a class="btn btn-primary btn-sm mb-2 " href="borders/exports" role="button">Экпорт пересечений в Excel</a>
+        <a class="btn btn-primary btn-sm mb-2 " href="{{route('borders.export')}}" role="button">Экпорт пересечений в Excel</a>
         <p> Импорт Файла .xls .xlsx</p>
-            
+
         @if (session('status'))
           <div class="alert alert-success" role="alert">
             {{ session('status') }}
           </div>
         @endif
-  
-      <form action="borders/import" method="POST" enctype="multipart/form-data"> 
+
+      <form action="{{route('borders.import')}}" method="POST" enctype="multipart/form-data">
         @csrf
-       
-        <input type="file" name="files" > 
+
+        <input type="file" name="files" >
         <input class="btn btn-primary btn-sm mb-2" type="checkbox" value="true" name="haveHead"  id="haveHead">
         <label class="form-check-label  mb-2" for="defaultCheck1" >
           Есть шапка
@@ -56,9 +56,8 @@
     </div>
   </div>
 </div>
-              
 
-              <form method="GET" action="{{ route('searchBorders') }}">
+              <form method="GET" action="{{ route('borders.search') }}">
                 <div class="form-row">
                   <div class="form-group col-md-10">
                     <input type="text" class="form-control" id="s" name="s" placeholder="Поиск..."  value="{{request()->s}}">
@@ -79,11 +78,11 @@
                     <th scope="col">Дата пересечения</th>
                     <th scope="col">Способ передвижения</th>
                     <th scope="col">КПП</th>
-                    <th scope="col">Направление</th> 
+                    <th scope="col">Направление</th>
                   </tr>
                 </thead>
                 @foreach ($borders as $border)
-               
+
                   <tbody>
                     <tr>
                       <th scope="row">{{ $border->id }}</th>
@@ -94,7 +93,7 @@
                         <span  class="mail" style="color: blue" data-toId="{{ $border->id_user}}" data-Id="{{ $border->id }}" data-name="{{ $border->full_name }}">{{ $border->full_name }}</span>
                       </td>
                       @endrole
-                      
+
                       <td class="col-md-3">{{ $border->citizenship }}</td>
                       <td class="col-md-3">{{ $border->date_birth }}</td>
                       <td class="col-md-3">{{ $border->passport }}</td>
@@ -108,39 +107,39 @@
                     </tr>
 
                 @endforeach
-                                    
+
               </tbody>
             </table>
                 {{ $borders->appends(['s'=>request()->s])->links() }}
-    </div> 
+    </div>
     <input type="hidden" name="from" id="from" value="{{ $authUser}}">
     <input type="hidden" name="name" id="name" value="{{ $authUsername}}">
     <script>
 
       const links = document.querySelectorAll('.mail');
-      
-      
+
+
       links.forEach(function(item, i, links) {
         let authUserId = document.querySelector('#from').value;
         let authUsername = document.querySelector('#name').value;
-        
-      
+
+
         item.addEventListener("click", function(event) {
           event.preventDefault();
           let toUserId = this.getAttribute('data-toId');
           let borderId = this.getAttribute('data-Id');
           let borderName = this.getAttribute('data-name');
-       
+
            const data = JSON.stringify({
             from: authUserId,
             to:toUserId,
             message: "Пользователь "+ authUsername + " пытался зайти на вашу  запись пересечений гражданина "+borderName+" под id " +borderId
           });
-          
-          
+
+
           const response = fetch('/message',{
           method: "POST",
-          
+
           headers: {
             "Content-Type": "application/json",
             "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute(
@@ -148,7 +147,7 @@
           },
             body:data
           })
-          
+
           .then(function (response) {
             // console.log(data)
           return response.json()

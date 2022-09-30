@@ -25,6 +25,11 @@ class User extends Authenticatable
         // 'role',
     ];
 
+//    public function roles()
+//    {
+//        return $this->belongsToMany('App\Models\User', 'model_has_roles', 'role_id', 'model_id');
+//    }
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -43,5 +48,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
+
+    public function citizens(){
+        return $this->hasMany(Citizen::class);
+    }
+
 }

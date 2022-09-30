@@ -10,6 +10,7 @@
             </div>
 
             <div class="col-8">
+                <h1 class="display-8">Добавить событие</h1>
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -19,32 +20,42 @@
                         </ul>
                     </div>
                 @endif
-                <form method="POST" action="" enctype="multipart/form-data" id="citisAdd" >
+                <form method="POST" action="{{route('events.store')}}" enctype="multipart/form-data" id="citisAdd" >
 
                     @csrf
-                    <div class="form-group">
+                    <div class="form-group" style="display: none">
                         <label for="full_name">Гражданин</label>
-                        <input type="text" class="typeahead form-control" name="" id="">
+                        <input type="text" class="typeahead form-control" name="id_citizen" id="id_citizen">
                     </div>
                     <div class="form-group">
-                        <label for="full_name">Ф.И.О.</label>
-                        <input type="text" class="typeahead form-control" name="full_name" id="full_name">
+                        <label for="id_citizen">Ф.И.О. гражданина</label>
+                        <select name="id_citizen" id="id_citizen" class="selectpicker ml-3" data-style="btn-info"
+                                data-live-search="true" data-size="10" multiple title="Выберите гражданина">
+
+                            @foreach($citizens as $citizen)
+                                <option name="id_citizen" id="id_citizen" value="{{ $citizen->id}}" data-subtext="{{$citizen->date_birth}}">{{$citizen->full_name}} </option>
+                            @endforeach
+
+                        </select>
+
+
                     </div>
-                    <div class="form-group">
-                        <label for="date_birth">Дата рождения</label>
-                        <input type="date" class="form-control" name="date_birth" id="date_birth" >
-                    </div>
+
+{{--                    <div class="form-group">--}}
+{{--                        <label for="date_birth">Дата рождения</label>--}}
+{{--                        <input type="date" class="form-control" name="date_birth" id="date_birth" value="{{$citizen->date_birth}}"  >--}}
+{{--                    </div>--}}
                     <div class="form-group">
                         <label for="who_noticed">Кто заметил</label>
-                        <input type="text" class="typeahead form-control" name="who_noticed" id="who_noticed">
+                        <input type="text" class="typeahead form-control" name="who_noticed" id="who_noticed" value="{{old('who_noticed')}}" >
                     </div>
                     <div class="form-group">
                         <label for="where_noticed">Где заметил</label>
-                        <input type="text" class="typeahead form-control" name="where_noticed" id="where_noticed">
+                        <input type="text" class="typeahead form-control" name="where_noticed" id="where_noticed" value="{{old('where_noticed')}}">
                     </div>
                     <div class="form-group">
                         <label for="detection_date">Дата обнаружения</label>
-                        <input type="datetime-local" class="typeahead form-control" name="detection_date" id="detection_date">
+                        <input type="datetime-local" class="typeahead form-control" name="detection_date" id="detection_date" value="{{old('detection_date')}}">
                     </div>
 
                     <label for="">Доступ к просмотру записи</label>
@@ -62,98 +73,78 @@
 
                     <div class="alert alert-success messages" role="alert" style="display: none"></div>
                     <button type="submit" class="btn btn-primary" id="add-event">Добавить запись</button>
-                </form>
 
+                </form>
+{{--                <div class="container">--}}
+{{--                    <div class="row">--}}
+{{--                        <div class="panel panel-default">--}}
+{{--                            <div class="panel-heading">--}}
+{{--                                <h3>Гражданин</h3>--}}
+{{--                            </div>--}}
+{{--                            <div class="panel-body">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <input type="text" class="form-controller" id="search" name="search"></input>--}}
+{{--                                </div>--}}
+{{--                                <table class="table table-bordered table-hover">--}}
+{{--                                    <thead>--}}
+{{--                                    <tr>--}}
+{{--                                        <th>ID</th>--}}
+{{--                                        <th>Имя гражданина</th>--}}
+{{--                                        <th>Дата рождения</th>--}}
+{{--                                    </tr>--}}
+{{--                                    </thead>--}}
+{{--                                    <tbody>--}}
+{{--                                    </tbody>--}}
+{{--                                </table>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
 
-{{--            <script>--}}
-{{--                const formUpdate = document.getElementById('citisAdd');--}}
-{{--                const messageBlock = document.querySelector('.messages');--}}
-
-{{--                // formUpdate.addEventListener('submit' , function(e){--}}
-{{--                //     e.preventDefault();--}}
-{{--                //     const formData = new FormData(this);--}}
-{{--                //     const checkbox = document.querySelectorAll('.thing');--}}
-{{--                //     let validateCHeckbox = false;--}}
-
-{{--                //       for (let i =0; i < checkbox.length; i++) {--}}
-{{--                //           if (checkbox[i].checked) {--}}
-{{--                //               validateCHeckbox = true;--}}
-{{--                //               break;}--}}
-{{--                //               }--}}
-
-{{--                //           if (!validateCHeckbox) {--}}
-{{--                //             alert('Выберите хотя бы один доступ к просмотру записи!');--}}
-{{--                //             return;}--}}
-
-{{--                //       // fetch('/citisens', {--}}
-{{--                //       //       method: "POST",--}}
-{{--                //       //       headers: {"X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')},--}}
-{{--                //       //       body: formData })--}}
-{{--                //       //             .then(function(response) {--}}
-{{--                //       //                 if (response.status == 200) {--}}
-{{--                //       //                     messageBlock.textContent = 'Данные успешно добавленны!';--}}
-{{--                //       //                     messageBlock.style.display = 'block';--}}
-{{--                //       //                 }--}}
-{{--                //       //                 if (response.status == 403) {--}}
-{{--                //       //                       messageBlock.textContent = 'Ошибка доступа!';--}}
-{{--                //       //                       messageBlock.style.display = 'block';--}}
-{{--                //       //                   }--}}
-{{--                //       //                 console.log(response)--}}
-{{--                //       //                return response.text();--}}
-{{--                //       //             })--}}
-{{--                //       //             .then(function(text)  {--}}
-{{--                //       //                 console.log('Success ' + text);--}}
-{{--                //       //             }).catch(function(error){--}}
-{{--                //       //                 console.error(error);--}}
-{{--                //       //             })--}}
-{{--                //           });--}}
-
-{{--                let addCitizen = document.querySelector('#citisAdd');--}}
-{{--                var checkboxes = document.querySelectorAll('input.thing'),--}}
-{{--                    checkall = document.getElementById('checkall');--}}
-{{--                for(var i=0; i<checkboxes.length; i++) {--}}
-{{--                    checkboxes[i].onclick = function() {--}}
-{{--                        var checkedCount = document.querySelectorAll('input.thing:checked').length;--}}
-{{--                        checkall.checked = checkedCount > 0;--}}
-{{--                        checkall.indeterminate = checkedCount > 0 && checkedCount < checkboxes.length;--}}
-{{--                    }--}}
-{{--                }--}}
-{{--                checkall.onclick = function() {--}}
-{{--                    for(var i=0; i<checkboxes.length; i++) {--}}
-{{--                        checkboxes[i].checked = this.checked;--}}
-{{--                    }--}}
-{{--                }--}}
-
-{{--                let nameCounter = 1;--}}
-{{--                $('#addInputs').click(function() {--}}
-
-{{--                    if (nameCounter < 5) {--}}
-{{--                        $('#social_account').append(`<input type="text" class="form-control" name="social_account${nameCounter++}" id="social_account${nameCounter++}" />`);--}}
-{{--                    } else {--}}
-{{--                        return;--}}
-{{--                    }--}}
-{{--                });--}}
-{{--                let namePhone= 1;--}}
-{{--                $('#addInputsPhone').click(function() {--}}
-
-{{--                    if (namePhone < 3) {--}}
-{{--                        $('#phone_number').append(`<input type="text" class="form-control" name="phone_number${namePhone++}" id="phone_number" />`);--}}
-{{--                    } else {--}}
-{{--                        return;--}}
-{{--                    }--}}
-{{--                });--}}
-{{--                let namePass= 1;--}}
-{{--                $('#addInputsPass').click(function() {--}}
-
-{{--                    if (namePass < 3) {--}}
-{{--                        $('#passport_data').append(`<input type="text" class="form-control" name="passport_data${namePass++}" id="passport_data" />`);--}}
-{{--                    } else {--}}
-{{--                        return;--}}
-{{--                    }--}}
-{{--                });--}}
-
+{{--            <script type="text/javascript">--}}
+{{--                $('#search').on('keyup',function(){--}}
+{{--                    $value=$(this).val();--}}
+{{--                    $.ajax({--}}
+{{--                        type : 'get',--}}
+{{--                        url : '{{URL::to('search')}}',--}}
+{{--                        data:{'search':$value},--}}
+{{--                        success:function(data){--}}
+{{--                            $('tbody').html(data);--}}
+{{--                        }--}}
+{{--                    });--}}
+{{--                })--}}
 {{--            </script>--}}
+{{--            <script type="text/javascript">--}}
+{{--                $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });--}}
+{{--            </script>--}}
+
+            <script>
+                const formUpdate = document.getElementById('formAdd');
+                const messageBlock = document.querySelector('.messages');
+
+                let addCitizen = document.querySelector('#citisAdd');
+
+                var checkboxes = document.querySelectorAll('input.thing'),
+                    checkall = document.getElementById('checkall');
+                for (var i = 0; i < checkboxes.length; i++) {
+                    checkboxes[i].onclick = function () {
+                        var checkedCount = document.querySelectorAll('input.thing:checked').length;
+                        checkall.checked = checkedCount > 0;
+                        checkall.indeterminate = checkedCount > 0 && checkedCount < checkboxes.length;
+                    }
+                }
+                checkall.onclick = function () {
+                    for (var i = 0; i < checkboxes.length; i++) {
+                        checkboxes[i].checked = this.checked;
+                    }
+                }
+                $('.selectpicker').selectpicker({
+                    noneResultsText: 'Гражданин не найден <a class="btn btn-primary " href="{{ route('citizen.create') }}" role="button">Добавить гражданина</a>'
+                });
+
+
+            </script>
 
 
 

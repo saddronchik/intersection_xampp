@@ -28,10 +28,7 @@
                     <div class="form-group">
                         <label for="id_citisen">ID Владельца</label>
                         <select name="id_citisen" id="id_citisen" class="selectpicker" data-style="btn-info"
-                                data-live-search="true">
-                            <option data-tokens="ketchup mustard" data-style="btn-info" value="Не определенно">Выберите
-                                гражданина
-                            </option>
+                                data-live-search="true" multiple title="Выберите гражданина">
                             @foreach($citizens as $citizen)
                                 <option name="id_citisen" id="id_citisen" value="{{$citizen->full_name}}"
                                         data-subtext="{{$citizen->id}}">{{$citizen->full_name}} </option>

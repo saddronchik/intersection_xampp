@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-2">
                 <div class="nav flex-column nav-pills" aria-orientation="vertical">
-                    <a class="btn btn-primary btn-sm mb-2 " href="{{route('home')}}" role="button">Назад</a>
+                    <a class="btn btn-primary btn-sm mb-2 " href="{{ route('citizen.list') }}" role="button">Назад</a>
                 </div>
             </div>
 
@@ -24,17 +24,17 @@
 
                     <div class="form-group">
                         <label for="full_name">ФИО</label>
-                        <input type="text" class="typeahead form-control" name="full_name" id="full_name">
+                        <input type="text" class="typeahead form-control" name="full_name" id="full_name" value="{{old('full_name')}}" >
                     </div>
                     <div class="form-group">
                         <label for="passport_data">Пасспортные данные</label>
                         <div id="passport_data"><input type="text" class="form-control" name="passport_data"
-                                                       id="passport_data"></div>
+                                                       id="passport_data" value="{{old('passport_data')}}" ></div>
                         <input class="btn btn-primary btn-sm mt-2" type="button" value="+" id="addInputsPass"/>
                     </div>
                     <div class="form-group">
                         <label for="date_birth">Дата рождения</label>
-                        <input type="date" class="form-control" name="date_birth" id="date_birth">
+                        <input type="date" class="form-control" name="date_birth" id="date_birth" value="{{old('date_birth')}}" >
                     </div>
                     <div class="form-group">
                         <label for="photo">Фото</label>
@@ -43,30 +43,30 @@
                     </div>
                     <div class="form-group">
                         <label for="place_registration">Место регистрации</label>
-                        <input type="text" class="form-control" name="place_registration" id="place_registration">
+                        <input type="text" class="form-control" name="place_registration" id="place_registration"  value="{{old('place_registration')}}" >
                     </div>
                     <div class="form-group">
                         <label for="place_residence">Место жительства</label>
-                        <input type="text" class="form-control" name="place_residence" id="place_residence">
+                        <input type="text" class="form-control" name="place_residence" id="place_residence" value="{{old('place_residence')}}" >
                     </div>
                     <div class="form-group">
                         <label for="phone_number">Телефонный номер</label>
                         <div id="phone_number"><input type="number" class="form-control" name="phone_number"
-                                                      id="phone_number"></div>
+                                                      id="phone_number" value="{{old('phone_number')}}" ></div>
                         <input class="btn btn-primary btn-sm mt-2" type="button" value="+" id="addInputsPhone"/>
                     </div>
 
                     <div class="form-group">
                         <label for="social_account">Соц аккаунт</label>
                         <div id="social_account"><input type="text" class="form-control" name="social_account"
-                                                        id="social_account"></div>
+                                                        id="social_account" value="{{old('social_account')}}" ></div>
                         <input class="btn btn-primary btn-sm mt-2" type="button" value="+" id="addInputs"/>
                     </div>
 
 
                     <div class="form-group">
                         <label for="addit_inf">Доп информация</label>
-                        <textarea class="form-control" name="addit_inf" id="addit_inf" rows="3"></textarea>
+                        <textarea class="form-control" name="addit_inf" id="addit_inf" rows="3">{{old('addit_inf')}}</textarea>
                     </div>
 
                     <div class="form-group">

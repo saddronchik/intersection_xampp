@@ -5,16 +5,9 @@
         <div class="row">
             <div class="col-2">
                 <div class="nav flex-column nav-pills" aria-orientation="vertical">
-
                     <a class="btn btn-primary btn-sm mb-2 " href="{{ route('home') }}" role="button">Главная</a>
-
-                    <a class="btn btn-primary btn-sm mb-2 " href="" role="button">Список граждан</a>
-
-                    <a class="btn btn-primary btn-sm mb-2 " href="{{route('homeuser')}}" role="button">Граждане доступные мне</a>
-
+                    <a class="btn btn-primary btn-sm mb-2 " href="{{route('citizen.citizenForUser')}}" role="button">Граждане доступные мне</a>
                     <a class="btn btn-primary btn-sm mb-2 " href="{{route('citizen.create')}}" role="button">Добавление граждан</a>
-
-
                 </div>
             </div>
 
@@ -40,14 +33,14 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <a class="btn btn-primary btn-sm mb-2 " href="{{route('citisen.export')}}" role="button">Экпорт граждан в Excel</a>
+                                <a class="btn btn-primary btn-sm mb-2 " href="{{route('citizen.export')}}" role="button">Экпорт граждан в Excel</a>
                                 <p> Импорт Файла .xls .xlsx</p>
                                 @if (session('status'))
                                     <div class="alert alert-success" role="alert">
                                         {{ session('status') }}
                                     </div>
                                 @endif
-                                <form action="{{route('citisen.import')}}" method="POST" enctype="multipart/form-data">
+                                <form action="{{route('citizen.import')}}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <input type="file" name="files" >
                                     <input class="btn btn-primary btn-sm mb-2" type="checkbox" value="true" name="haveHead"  id="haveHead">
@@ -63,7 +56,7 @@
                 </div>
                 <!-- EndModal -->
 
-                <form method="GET" action="{{ route('search') }}">
+                <form method="GET" action="{{ route('citizen.search') }}">
                     <div class="form-row">
                         <div class="form-group col-md-10">
                             <input type="text" class="form-control" id="s" name="s" placeholder="Поиск..."  value="{{request()->s}}">
@@ -140,7 +133,7 @@
 
                         console.log(data);
 
-                        const response = fetch('/message', {
+                        const response = fetch('message', {
                             method: "POST",
 
                             headers: {

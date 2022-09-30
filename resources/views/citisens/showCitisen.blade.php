@@ -28,7 +28,7 @@
                             </tr>
                             <tr>
                                 <td>Фото</td>
-                                
+
                                 <td><img src="{{ asset('storage/'. $citizen->photo) }}" height="240px">
                                     <input type="file" class="form-control mt-2" name="photo" id="photo" aria-describedby="emailHelp" style="border: none" >
                                 </td>
@@ -45,8 +45,8 @@
                                             <input id="passport_data" name="passport_data1" class="form-control" value="{{ $citizen->passport_data1 }}">
                                             <input id="passport_data" name="passport_data2" class="form-control" value="{{ $citizen->passport_data2 }}">
                                         </div>
-                                      </div>   
-                                </td>     
+                                      </div>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Дата рождения</td>
@@ -63,7 +63,7 @@
                                 <td><input id="place_residence" name="place_residence" class="form-control"
                                         style="border: none;" value="{{ $citizen->place_residence }}"></td>
                             </tr>
-                            
+
                             <tr>
                                 <td>Телефонный номер</td>
                                 <td>
@@ -76,7 +76,7 @@
                                             <input id="phone_number1" name="phone_number1" class="form-control" value="{{ $citizen->phone_number1 }}">
                                             <input id="phone_number2" name="phone_number2" class="form-control"value="{{ $citizen->phone_number2 }}">
                                         </div>
-                                      </div>            
+                                      </div>
                                 </td>
                             </tr>
                             <tr>
@@ -93,41 +93,41 @@
                                             <input id="social_account3" name="social_account3" class="form-control"value="{{ $citizen->social_account3 }}">
                                             <input id="social_account4" name="social_account4" class="form-control" value="{{ $citizen->social_account4 }}">
                                         </div>
-                                      </div> 
+                                      </div>
 
                                 </td>
                             </tr>
                             <tr>
                                 <td>Доп. информация</td>
                                 <td><textarea id="addit_inf" name="addit_inf" class="form-control"
-                                        style="border: none;">{{ $citizen->addit_inf }}</textarea> 
+                                        style="border: none;">{{ $citizen->addit_inf }}</textarea>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Кто заметил</td>
-                                <td><textarea id="who_noticed" name="who_noticed" class="form-control"
-                                        style="border: none;">{{ $citizen->who_noticed }}</textarea> 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Где заметил</td>
-                                <td><textarea id="where_notice" name="where_notice" class="form-control"
-                                        style="border: none;">{{ $citizen->where_notice }}</textarea> 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Время обнаружения</td>
-                                <td><input id="detection_time" name="detection_time" class="form-control" type="datetime-local" style="border: none;"
-                                    value="{{ $citizen->detection_time }}">
-                                </td>
-                            </tr>
-                           
+{{--                            <tr>--}}
+{{--                                <td>Кто заметил</td>--}}
+{{--                                <td><textarea id="who_noticed" name="who_noticed" class="form-control"--}}
+{{--                                        style="border: none;">{{ $citizen->who_noticed }}</textarea> --}}
+{{--                                </td>--}}
+{{--                            </tr>--}}
+{{--                            <tr>--}}
+{{--                                <td>Где заметил</td>--}}
+{{--                                <td><textarea id="where_notice" name="where_notice" class="form-control"--}}
+{{--                                        style="border: none;">{{ $citizen->where_notice }}</textarea> --}}
+{{--                                </td>--}}
+{{--                            </tr>--}}
+{{--                            <tr>--}}
+{{--                                <td>Время обнаружения</td>--}}
+{{--                                <td><input id="detection_time" name="detection_time" class="form-control" type="datetime-local" style="border: none;"--}}
+{{--                                    value="{{ $citizen->detection_time }}">--}}
+{{--                                </td>--}}
+{{--                            </tr>--}}
+{{--                           --}}
                                 <tr>
                                     <td>Сделал запись пользователь</td>
                                     <td>{{ $citizen->user }}</td>
                                 </tr>
                             <tr>
-                             
+
                                 <td>Доступ к просмотру записи</td>
                                 <td>  <div class="form-group" style="width:200px; height:100px; overflow:auto; border:solid 1px #C3E4FE;">
                                       <fieldset id="shest">
@@ -142,12 +142,12 @@
 
                     </table>
                     <div class="alert alert-success messages" role="alert" style="display: none"></div>
-                    <a href="{{route('home')}}" class="btn btn-primary">Назад</a>
+                    <a href="{{route('citizen.list')}}" class="btn btn-primary">Назад</a>
                     <button id="update" name="update" type="submit" class="btn btn-success"> Обновить данные </button>
 
                         <a href="citisenBorder/{{$citizen->id}}" class="btn btn-primary" style="margin-left: 50%">Пересечение границ</a>
             </div>
-           
+
             </form>
 
             <script>
@@ -156,54 +156,6 @@
                 const formUpdate = document.getElementById('formUpdate');
                 const messageBlock = document.querySelector('.messages');
 
-                // formUpdate.addEventListener('submit' , function(e){
-                //     e.preventDefault();
-
-                //     const formData = new FormData(this);
-                //     const checkbox = document.querySelectorAll('.thing');
-                //     let validateCHeckbox = false;
-
-            
-                //     for (let i =0; i < checkbox.length; i++) {
-                //         if (checkbox[i].checked) {
-                //             validateCHeckbox = true;
-                //             break;
-                //         }
-                //     }
-
-                //     if (!validateCHeckbox) {
-                //         alert('Выберите хотя бы один доступ к просмотру записи!');
-                //         return;
-                //     }
-                //     fetch('/citisen/{id}', {
-                //             method: "POST",
-                //             headers: {
-                //                 "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute(
-                //                     'content')},
-                //             body: formData
-                //         })
-                //         .then(function(response) {
-                //             if (response.status == 200) {
-                //                 messageBlock.textContent = 'Данные обновлены успешно!';
-                //                 messageBlock.style.display = 'block';
-                //             }
-                //             if (response.status == 403) {
-                //                   messageBlock.textContent = 'Ошибка доступа!';
-                //                   messageBlock.style.display = 'block';
-                //               }
-                //             console.log(response)
-                //            return response.text();
-                //         })
-
-                //         .then(function(text)  {
-                //             console.log('Success ' + text);
-
-                //         }).catch(function(error){
-                //             console.error(error);
-
-                //         })
-
-                // });
 
             let addCitizen = document.querySelector('#citisAdd');
 
@@ -224,7 +176,7 @@
 
             let namePass= 1;
                 $('#addInputsPass').click(function() {
-                   
+
                     if (namePass < 3) {
                     $('#passport_data').append(` <input id="passport_data" name="passport_data${namePass++}" class="form-control" style="border: none;" value="{{$citizen->passport_data1}}">`);
                     $('#passport_data').append(` <input id="passport_data" name="passport_data${namePass++}" class="form-control" style="border: none;" value="{{$citizen->passport_data2}}">`);

@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-2">
       <div class="nav flex-column nav-pills" aria-orientation="vertical">
-        
+
         <a class="btn btn-primary btn-sm mb-2 " href="borderslist" role="button">Назад</a>
 
       </div>
@@ -25,20 +25,20 @@
                     <form method="POST" enctype="multipart/form-data" action="borders" id="formAdd">
                         @csrf
                         <h1> Пересечение границы </h1>
-                        
+
                         <div class="form-group">
                           <label for="id_citisen">ID Гражданина</label>
                           {{-- <input type="number" class="form-control" name="id_citisen" id="id_citisen" > --}}
-                         
-                        
-                          <select name="id_citisen" id="id_citisen" class="selectpicker" data-style="btn-info" data-live-search="true">
-                            <option data-tokens="ketchup mustard">Выберите гражданина</option>
+
+
+                          <select name="id_citisen" id="id_citisen" class="selectpicker" data-style="btn-info" data-live-search="true" multiple title="Выберите гражданина">
+
                             @foreach($borders as $border)
                             <option name="id_citisen" id="id_citisen" value="{{$border->id}}"data-subtext="{{$border->id}}">{{$border->full_name}}</option>
-                            
+
                             @endforeach
                           </select>
-                          
+
                         </div>
                         <div class="form-group">
                           <label for="citizenship">Гражданство</label>
@@ -67,15 +67,14 @@
                         <div class="form-group">
                           <label for="way_crossing">ID машины</label>
                           {{-- <input type="number" class="form-control" name="way_crossing" id="way_crossing" > --}}
-                          <select name="way_crossing" id="way_crossing" class="selectpicker" data-style="btn-info" data-live-search="true">
-                            <option data-tokens="ketchup mustard">Выберите автомобиль</option>
-                          
+                          <select name="way_crossing" id="way_crossing" class="selectpicker" data-style="btn-info" data-live-search="true" multiple title="Выберите автомобиль">
+
                             @foreach($avtos as $avto)
                             <option name="way_crossing" id="way_crossing" value="{{$avto->id}}" data-subtext="{{$avto->id}}">{{$avto->brand_avto}}</option>
-                            
+
                               @endforeach
                           </select>
-                          
+
                         </div>
                         <div class="form-group">
                           <label for="checkpoint">КПП</label>
@@ -95,7 +94,7 @@
                         </div>
                         <div class="form-group">
                           <label for="">Доступ к просмотру записи</label>
-                
+
                           <div class="form-group" style="width:200px; height:100px; overflow:auto; border:solid 1px #C3E4FE;">
                             <fieldset id="shest">
                               <label><input type="checkbox" id="checkall"> Выбрать всех</label>
@@ -110,7 +109,7 @@
                 </div>
 
 <script>
-  
+
   let addCitizen = document.querySelector('#citisAdd');
 
 var checkboxes = document.querySelectorAll('input.thing'),

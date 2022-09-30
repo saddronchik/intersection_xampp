@@ -15,6 +15,7 @@ class CitisensRepository implements CitisensInterface
     public function getAll(): LengthAwarePaginator
     {
         $result = DB::table('citizens')
+            ->orderBy('id')
             ->paginate(5);
         return $result;
     }

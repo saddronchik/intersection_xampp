@@ -6,7 +6,7 @@
     <div class="col-2">
       <div class="nav flex-column nav-pills" aria-orientation="vertical">
 
-        <a class="btn btn-primary btn-sm mb-2 "  href="home" role="button">Главная</a>
+        <a class="btn btn-primary btn-sm mb-2 "  href="{{route('home')}}" role="button">Главная</a>
 
       </div>
     </div>
@@ -119,7 +119,7 @@
                           </label>
                         </div> --}}
 
-                        <a href="home" class="btn btn-primary">Назад</a>
+                        <a href="{{route('home')}}" class="btn btn-primary">Назад</a>
                         <button type="submit" id="add" name="add" class="btn btn-primary">Добавить пользователя</button>
                       </form>
                 </div>

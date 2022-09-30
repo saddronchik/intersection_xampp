@@ -5,18 +5,12 @@
 <div class="row">
     <div class="col-2">
       <div class="nav flex-column nav-pills" aria-orientation="vertical">
-
-        <a class="btn btn-primary btn-sm mb-2 " href="home" role="button">Назад</a>
-
+        <a class="btn btn-primary btn-sm mb-2 " href="{{route('home')}}" role="button">Назад</a>
       </div>
     </div>
-
-
     <div class="col-10">
       <h1 class="display-8">Граждане</h1>
-
-
-              <form method="GET" action="{{ route('searchUsers') }}">
+              <form method="GET" action="{{ route('citizen.searchUsers') }}">
                 <div class="form-row">
                   <div class="form-group col-md-10">
                     <input type="text" class="form-control" id="s" name="s" placeholder="Поиск..."  value="{{request()->s}}">

@@ -26,6 +26,7 @@ class CitisenCreateRequest extends FormRequest
         return [
             'full_name' => 'required',
             'passport_data' => 'required',
+            'date_birth' => 'required',
             'user' => 'required',
         ];
     }
@@ -33,9 +34,10 @@ class CitisenCreateRequest extends FormRequest
     {
         return[
             'full_name.required' => 'Заполните поле ФИО!',
+            'date_birth.required' => 'Укажите дату рождения!',
             'passport_data.required' => 'Заполните поле паспорта!',
             'user.required' => 'Выберите пользователя!',
         ];
     }
-    
+
 }

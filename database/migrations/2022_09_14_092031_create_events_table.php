@@ -16,13 +16,19 @@ class CreateEventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_citizen')->unsigned();
-            $table->foreign('id_citizen')->references('id')->on('citizens')->restrictOnDelete();
-//            $table->string('citizen_name');
-//            $table->date('citizen_birth');
+            $table->foreign('id_citizen')->references('id')->on('citizens');
+            $table->string('full_name');
+            $table->date('date_birth');
             $table->string('who_noticed');
             $table->string('where_noticed');
             $table->dateTime('detection_date');
+            $table->string('user');
+            $table->integer('id_user');
             $table->timestamps();
+        });
+        Schema::table('records', function (Blueprint $table) {
+            $table->biginteger('id_event')->nullable()->unsigned();
+            $table->foreign('id_event')->references('id')->on('events');
         });
     }
 

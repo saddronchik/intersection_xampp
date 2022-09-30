@@ -51,8 +51,8 @@ class CitisenControl extends Controller
                 $params['photo']=$path;
                 $params['user']= Auth::user()->username;
                 $params['id_user']= Auth::user()->id;
-
                 $citizen = Citizen::create($params);
+
                 $citizen->save();
 
                 $id_citisen = $citizen -> id;
@@ -63,7 +63,7 @@ class CitisenControl extends Controller
                     "id_citisen"=>$id_citisen
                 ]);
             }
-               return redirect()->route('home');
+               return redirect()->route('citizen.list');
 
         } catch(Exception $e) {
             return back()->with('error', $e->getMessage());
@@ -101,7 +101,6 @@ class CitisenControl extends Controller
      */
     public function update(CitisenCreateRequest $request, Citizen $citizen)
     {
-
         if ($request->photo==null) {
 
             $params = $request->all();
@@ -120,7 +119,7 @@ class CitisenControl extends Controller
             }
                 $records->save();
 
-            return redirect()->route('home');
+            return redirect()->route('citizen.list');
         }else {
 
        $params = $request->all();
@@ -131,12 +130,9 @@ class CitisenControl extends Controller
         $params['photo']=$path;
         $params['user']= $citizen['user'];
         $result = $citizen->fill($params)->save();
-
         $id_citisen = $citizen ->id;
-
         Record::where('id_citisen',$id_citisen)->delete();
 
-        // $delete = DB::table('records')->where('id_citisen',$id_citisen)->delete();
             foreach ($request->user as $user) {
              $records = Record::create([
                 "id_user"=>$user,
@@ -144,7 +140,7 @@ class CitisenControl extends Controller
             }
                 $records->save();
                 $citizen->save();
-            return redirect()->route('home');
+            return redirect()->route('citizen.list');
         }
     }
 
@@ -158,7 +154,7 @@ class CitisenControl extends Controller
     {
         try{
             $this->citisensServices->remove($id);
-            return redirect()->route('home');
+            return redirect()->route('list_citizen');
         }
         catch(Exception $e) {
             return back()->with('error', $e->getMessage());

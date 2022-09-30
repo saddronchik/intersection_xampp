@@ -44,20 +44,20 @@ class BorderController extends Controller
     {
         $id_user = Auth::user()->id;
         $borders = $this->borderRepository->indexBorderUser($id_user);
-            return view('borderUser',[
+            return view('border.borderUser',[
                 'borders'=>$borders,
                 'id_user'=>$id_user
                 ]);
     }
 
-    public function indexa()
+    public function create()
     {
         $borders = Citizen::select('citizens.id','citizens.full_name')->get();
 
         $avtos = Avto::select('avtos.id','avtos.brand_avto')->get();
 
         $users = User::select('users.id','users.username')->get();
-            return view('addborder',[
+            return view('border.addborder',[
                 "borders"=>$borders,
                 "avtos"=>$avtos,
                 "users"=>$users]);
@@ -65,7 +65,7 @@ class BorderController extends Controller
     }
 
     public function indexAdd(){
-        return view('addborder');
+        return view('border.addborder');
     }
 
     public function searchBorders(Request $request){
@@ -75,7 +75,7 @@ class BorderController extends Controller
         $authUsername = Auth::user()->username;
         $borders = $this->borderRepository->serchBorder($s);
 
-            return view('border',[
+            return view('border.border',[
                 "borders"=>$borders,
                 "authUser"=>$authUser,
                 "authUsername"=>$authUsername
@@ -88,7 +88,7 @@ class BorderController extends Controller
         if (is_null($s)) {
 
             $borders = $this->borderRepository->serchBorderUserNull($id_user);
-            return view('borderUser',[
+            return view('border.borderUser',[
                 'borders'=>$borders,
                 'id_user'=>$id_user
             ]);
@@ -96,7 +96,7 @@ class BorderController extends Controller
 
         $borders = $this->borderRepository->serchBorderUser($id_user,$s);
 
-            return view('borderUser',[
+            return view('border.borderUser',[
                 'borders'=>$borders,
                 'id_user'=>$id_user
             ]);
@@ -132,7 +132,7 @@ class BorderController extends Controller
                "id_border"=>$id_border
            ]);
        }
-        return redirect('borderslist');
+        return redirect()->route('borders.list');
     }
 
     /**
@@ -181,7 +181,7 @@ class BorderController extends Controller
                 "id_border"=>$id_border
                 ]);}
         // $border->save();
-        return redirect('borderslist');
+        return redirect()->route('borders.list');
     }
 
     /**
@@ -193,6 +193,6 @@ class BorderController extends Controller
     public function destroy($id)
     {
         Border::destroy($id);
-        return redirect('borderslist');
+        return redirect()->route('borders.list');
     }
 }

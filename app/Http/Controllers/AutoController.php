@@ -104,7 +104,6 @@ class AutoController extends Controller
         $autos = $this->autoRepository->getByBorder($id);
 
         return view('autos.autos_border', compact('autos'));
-
     }
 
     public function show(int $id)

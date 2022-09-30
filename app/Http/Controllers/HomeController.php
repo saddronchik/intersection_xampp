@@ -39,7 +39,7 @@ class HomeController extends Controller
             'authUsername' => $authUsername,
         ]);
     }
-    public function indexCitizenList()
+    public function сitizesList()
     {
         $citisens = $this->citisensRepository->getAll();
         $authUser = Auth::user()->id;
@@ -52,7 +52,7 @@ class HomeController extends Controller
         ]);
     }
 
-    public function indexcitisen(){
+    public function citizenForUser(){
         $id_user = Auth::user()->id;
         $citisens = $this->citisensRepository->getCizensJoinRecordsUsers() ;
         return view('citisens.citisenUser', [
@@ -67,7 +67,7 @@ class HomeController extends Controller
         $authUsername = Auth::user()->username;
         $citisens = $this->citisensRepository->getSearchCitisens($request) ;
 
-        return view('home',  [
+        return view('citisens.citizensList',  [
             'citisens'=>$citisens,
             'authUser' => $authUser,
             'authUsername' => $authUsername,
@@ -91,7 +91,7 @@ class HomeController extends Controller
         $id_user = Auth::user()->id;
         $citisens = $this->citisensRepository->getSearchUsersInCitisens($request);
 //подумать над правильностью
-        return view('citisenUser', compact('citisens'));
+        return view('citisens.citisenUser', compact('citisens'));
     }
 
     public function sendMessage(Request $request){
